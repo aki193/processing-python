@@ -1,7 +1,7 @@
 lines = [] #String
 line_index = 0
 
-sampleN = 50
+sampleN = 100
 clusterN = 3
 
 sample = []      # PVector
