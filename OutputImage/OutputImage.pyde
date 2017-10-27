@@ -1,9 +1,11 @@
 
 # mySketch imageOutput
-img = []
-imgStr = []
+img = [] #Image
 def setup():
     size(640, 360)
+    
+    imgStr = [] #String
+
     for num in range(1, 10):
         imgStr.append("pic0" + str(num) + ".jpg")
         
