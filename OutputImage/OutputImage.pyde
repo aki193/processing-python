@@ -13,9 +13,7 @@ def setup():
     for num in range(60):
         img.append(loadImage(imgStr[num])) 
         
-def draw():
-    background(0, 102, 153)
-    
+def draw():    
     for y in range(6):
         for x in range(10):
             image(img[x+y*10], x*64, y*60, 64, 60)
