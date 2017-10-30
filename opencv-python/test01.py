@@ -27,8 +27,10 @@ for contour in contours:
     if area != 0:
         level = calcCircleLevel(contour, area)
         print(level)
+# 画像の表示
+cv2.imshow('image contour', imgContour)
+cv2.imshow('image threshold', imgThresh)
 
-cv2.imshow('image', imgContour)
-cv2.imshow('image2', imgThresh)
+# キーが入力されるまで終了しない
 cv2.waitKey(0)
 
