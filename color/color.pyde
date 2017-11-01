@@ -7,7 +7,5 @@ def setup():
 def draw():
     background(255)
     image(img, width/2, height/2)
-    c = get(640,360)
-    fill(c)
-    noStroke()
+
     
