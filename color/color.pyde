@@ -1,7 +1,18 @@
-
+def setup():
+    size(640, 360)
+    global img, imgsb
+    img = loadImage("pic01.jpg")
+    imgsb = createImage(img.width, img.height, RGB)
+    imageMode(CENTER)
+    getColor()
+    
+def draw():
+    background(150)
+    image(img, width/2, height/2)
+    
+    
 def getColor():
     loadPixels()
-#     imgsb.loadPixels()
     img.loadPixels()
     for y in range(0, img.height):
         for x in range(0, img.width):
@@ -24,18 +35,3 @@ def getColor():
         print("Image is White!?!?!?")
         return(I)
     updatePixels()
-    
-    #image(imgsb, width, height)
-        
-def setup():
-    size(640, 360)
-    global img, imgsb
-    img = loadImage("pic01.jpg")
-    imgsb = createImage(img.width, img.height, RGB)
-    imageMode(CENTER)
-    getColor()
-    
-def draw():
-    background(150)
-    image(img, width/2, height/2)
-    
