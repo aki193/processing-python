@@ -26,7 +26,8 @@ def getColor():
             if r != 255 and g != 255 and b != 255:
                 print(r, g, b)
             pixels[loc] = color(r, g, b)
-            
+       
+#   fixme      
     if r >= 200 and g <= 20 and b <= 20:
         print("Image is RED!!!")
     elif r <= 30 and g <= 40 and b >= 200:
