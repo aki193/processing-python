@@ -12,6 +12,8 @@ def draw():
     
     
 def getColor():
+# This function is called before you access the pixel array, 
+# saying "load the pixels, I would like to speak with them!"
     loadPixels()
     img.loadPixels()
     for y in range(0, img.height):
