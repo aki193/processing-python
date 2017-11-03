@@ -5,21 +5,21 @@ def setup():
     imgsb = createImage(img.width, img.height, RGB)
     imageMode(CENTER)
     getColor()
-    
+    #
 def draw():
     background(150)
     image(img, width/2, height/2)
     
     
 def getColor():
-# This function is called before you access the pixel array, 
-# saying "load the pixels, I would like to speak with them!"
+#loadPixels()//ピクセル配列にアクセスする前にpixelsを読み込む
+#updatePixels()//読み込んだpixelsの更新
     loadPixels()
     img.loadPixels()
     for y in range(0, img.height):
         for x in range(0, img.width):
             loc = x + y*img.width
-            
+            #
             r = red(img.pixels[loc])
             g = green(img.pixels[loc])
             b = blue(img.pixels[loc])
@@ -27,7 +27,7 @@ def getColor():
                 print(r, g, b)
             pixels[loc] = color(r, g, b)
        
-#   fixme      
+# FIXME
     if r >= 200 and g <= 20 and b <= 20:
         print("Image is RED!!!")
     elif r <= 30 and g <= 40 and b >= 200:
