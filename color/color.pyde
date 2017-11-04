@@ -17,7 +17,9 @@ def getColor():
     loadPixels()
     img.loadPixels()
 #青を判断する変数?
-    c = 0
+    i = 0
+    j = 0
+    k = 0
     
     for y in range(0, img.height):
         for x in range(0, img.width):
@@ -29,19 +31,19 @@ def getColor():
             if r != 255 and g != 255 and b != 255:
                 print(r, g, b)
             pixels[loc] = color(r, g, b)
-            
 # 判断した色を+1する。
-            if r <= 20 and g <= 50 and b >= 50:
-                c += 1
-                print  "B = " + str(c)      
+            if r >= 120 and g <= 50 and b <= 120:
+                i += 1
+                print "R="+ str(i) + ", G=", + str(j) + ", B=" + str(k)       
             
-#             if r >= 200 and g <= 100 and b <= 20:
-#                 r = int(rr)
-#                 rr += rr + 1
-#                 print "R = " +str(rr)
+            elif r >= 20 and g <= 50 and b <= 120:
+                j += 1
+                print "R="+ str(i) + ", G=" + str(j) + ", B=" + str(k)
 #             elif r <= 20 and g <= 50 and b >= 50:
-#                 b = int(bb)
-#                 bb += bb + 1
+#                 i += 1
+#                 k += 1
+#                 print "R="+ str(i) + ", G=" + str(j) + ", B=" + str(k)
+#             
 #                 print "R = " +str(rr)+ "B = " +str(bb)        
 #     elif (r >= 130 , g >= 130 , b <= 20):
 #         print("Image is GREEN!?!?")
