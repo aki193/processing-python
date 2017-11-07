@@ -11,6 +11,9 @@ def calcCircleLevel (contour, area):
 # 60枚の画像読み込み
 for i in range(1, 10):
 	cv2.imread("data/pic0"+str(i)+".jpg")
+# 画像を読み込んだ後に60枚の円形度を算出します。
+	
+	
 
 # 画像読み込み
 imgOrigin = cv2.imread("data/pic45.jpg")
