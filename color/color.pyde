@@ -1,7 +1,7 @@
 def setup():
     size(640, 360)
     global img, imgsb
-    img = loadImage("pic01.jpg")
+    img = loadImage("pic38.jpg")
     imgsb = createImage(img.width, img.height, RGB)
     imageMode(CENTER)
     getColor()
@@ -35,22 +35,24 @@ def getColor():
             pixels[loc] = color(r, g, b)
 
 # 判断した色を+1する。
-            if r >= 100 and g <= 70 and b <= 50:
+            if r >= 90  and g <= 70 and b <= 80:
                 redCount += 1
-                print "Red ="+ str(redCount) + ", Green = ", + str(greenCount) + ", Blue = " + str(blueCount)       
-            elif r >=100  and g >= 80 and b <= 0:
+                print "Red = "+ str(redCount) + ", Green = " + str(greenCount) + ", Blue = " + str(blueCount)       
+            elif r >=90  and g >= 70 and b <= 10:
                 redCount += 1
                 greenCount += 1
-                print "R="+ str(redCount) + ", G=" + str(greenCount) + ", Blue = " + str(blueCount)
+                print "Red = "+ str(redCount) + ", Green = " + str(greenCount) + ", Blue = " + str(blueCount)
             elif r <= 0 and g <= 60 and b >= 100:
                 blueCount += 1
                 print "Red ="+ str(redCount) + ", Green = " + str(greenCount) + ", Blue = " + str(blueCount)
       
     updatePixels()
     
-    if redCount > blueCount and redCount > greenCount:
-        print "It is Red...!!"
-    elif blueCount > redCount and blueCount > greenCount:
-        print "It is Blue...!?" 
-    elif redCount >blueCount and greenCount > blueCount:
-        print "it is Yellow"
+    if redCount > 100:
+        print "It is Red...!?!?"
+    elif blueCount > greenCount:
+        print "It is Blue...!?!?!?" 
+    elif greenCount > blueCount:
+        print "It is Yellow...!?!?!?!?!?"
+    else:
+        print "It is White...!"
