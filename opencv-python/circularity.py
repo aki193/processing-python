@@ -8,6 +8,10 @@ def calcCircleLevel (contour, area):
     circle_level = 4.0 * math.pi * area / (perimeter * perimeter); # perimeter = 0 のとき気をつける
     return circle_level
 
+# 60枚の画像読み込み
+for i in range(1, 10):
+	cv2.imread("data/pic0"+str(i)+".jpg")
+
 # 画像読み込み
 imgOrigin = cv2.imread("data/pic45.jpg")
 # グレースケールへ変換後に２値化する
