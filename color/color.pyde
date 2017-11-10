@@ -26,7 +26,7 @@ def getColor():
     for index, img in enumerate(imges):
         print (index + 1)
         redCount = 0
-        greenCount = 0
+        yellowCount = 0
         blueCount = 0
         for y in range(img.height):
             for x in range(img.width):
@@ -37,25 +37,22 @@ def getColor():
                 b = blue(img.pixels[loc])
 
                 if r != (255) and g != (255) and b != (255):
-                    
-                    if r >=90  and g >= 130 and b <= 10:
-                        redCount += 1
-                        greenCount += 1
+                    if r >=90  and g >= 90 and b <= 20:
+                        yellowCount += 1
 
-                    elif r >= 130  and g <= 60 and b <= 80:
+                    elif r >= 100  and g <= 80 and b <= 80:
                         redCount += 1
                         
                     elif r <= 20 and g >= 60 and b >= 100:
                         blueCount += 1    
 
-
-                    
-        if redCount > 10:
+               
+        if yellowCount > blueCount:
+            print "It is Yellow...!?!?!?!?!?"     
+        elif redCount > 10:
             print "It is Red...!?!?"
-        elif blueCount > greenCount:
+        elif blueCount > yellowCount:
             print "It is Blue...!?!?!?" 
-        elif greenCount > blueCount:
-            print "It is Yellow...!?!?!?!?!?"
         else:
             print "Could not parse:_("
                     
