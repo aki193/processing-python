@@ -2,8 +2,8 @@
 import cv2
 import math
 
-imgOrigin = []
-imgOriginSum = []
+imgPath = []
+images = []
 
 # 円形度計算
 def calcCircleLevel (contour, area):
@@ -12,17 +12,17 @@ def calcCircleLevel (contour, area):
     return circle_level
 
 for i in range(1, 10):
-    imgOrigin.append(cv2.imread("data/pic0"+str(i)+".jpg"))
+    imgPath.append(cv2.imread("data/pic0"+str(i)+".jpg"))
 
 for i in range(10, 61):
-    imgOrigin.append(cv2.imread("data/pic"+str(i)+".jpg"))
+    imgPath.append(cv2.imread("data/pic"+str(i)+".jpg"))
 
 for i in range(60):
-    imgOriginSum.append(imgOrigin[i])
+    images.append(imgPath[i])
 
 # グレースケールへ変換後に２値化する
 for i in range(60):
-    imgGray = cv2.cvtColor(imgOriginSum[i],cv2.COLOR_BGR2GRAY)    
+    imgGray = cv2.cvtColor(images[i],cv2.COLOR_BGR2GRAY)
     ret,imgThresh = cv2.threshold(imgGray,220,255,cv2.THRESH_BINARY)
 # ２値化した画像から輪郭を取得
     imgTmp, contours, hierarchy = cv2.findContours(imgThresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_NONE)
@@ -31,7 +31,7 @@ for i in range(60):
 for i in range(60):
     for contour in contours:
     # 輪郭を（緑色で太さ３で <- 引数の値）描画する
-        imgContour = cv2.drawContours(imgOriginSum[i], contour, -1, (0, 255, 0), 3)
+        imgContour = cv2.drawContours(images[i], contour, -1, (0, 255, 0), 3)
     # 輪郭の面積を算出
         area = cv2.contourArea(contour)
         print(area)
