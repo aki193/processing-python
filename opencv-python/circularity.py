@@ -11,14 +11,15 @@ def calcCircleLevel (contour, area):
     circle_level = 4.0 * math.pi * area / (perimeter * perimeter); # perimeter = 0 のとき気をつける
     return circle_level
 
+# 画像パスを生成
 for i in range(1, 10):
-    imgPath.append(cv2.imread("data/pic0"+str(i)+".jpg"))
+    imgPath.append("data/pic0"+str(i)+".jpg")
 
 for i in range(10, 61):
-    imgPath.append(cv2.imread("data/pic"+str(i)+".jpg"))
-
+    imgPath.append("data/pic"+str(i)+".jpg")
+# 画像の読み込み
 for i in range(60):
-    images.append(imgPath[i])
+    images.append(cv2.imread(imgPath[i]))
 
 # グレースケールへ変換後に２値化する
 for i in range(60):
