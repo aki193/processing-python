@@ -61,18 +61,21 @@ for i in range(60):
             print("No:" + str(i+1), OKBLUE + "Area = " + str(area), OKGREEN + "Level = " + str(level))
             break   # １度輪郭を取得したら次の画像を解析する
 
-print(imgCircleLevels)
-
-# TODO: 円形度情報からなんの標識なのかを判別する
+# 円形度情報からなんの標識なのかを判別する
 for i in range(60):
+    # 指定方向外進行禁止
     if imgCircleLevels[i] >= 0.8:
         cv2.putText(images[i],"Straight ahead or left turn permitted",(0,50),fontface,fontscale, color)
+    # 学校，幼稚園，保育所などあり
     elif imgCircleLevels[i] >= 0.7:
         cv2.putText(images[i],"Children crossing",(0,50),fontface,fontscale, color)
+    # 一時停止
     elif imgCircleLevels[i] >= 0.5:
         cv2.putText(images[i],"Stop",(0,50),fontface,fontscale, color)
+    # 判別できない
     else:
         cv2.putText(images[i],"None",(0,50),fontface,fontscale, color)
+        
 # 画像の表示
 for i in range(60):
     cv2.imshow("image" + str(i+1), images[i])
