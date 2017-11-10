@@ -17,6 +17,7 @@ for i in range(1, 10):
 
 for i in range(10, 61):
     imgPath.append("data/pic"+str(i)+".jpg")
+
 # 画像の読み込み
 for i in range(60):
     images.append(cv2.imread(imgPath[i]))
@@ -40,10 +41,11 @@ for i in range(60):
         if area != 0:
             level = calcCircleLevel(contour, area)
             print(level)
+            
 # 画像の表示
-for i in range(1, 61):
-    cv2.imshow("image contour"+str(i), imgContour)
-    cv2.imshow("image threshold"+str(i), imgThresh)
+for i in range(60):
+    cv2.imshow("image contour"+str(i), imgContour[i])
+    cv2.imshow("image threshold"+str(i), imgThresh[i])
 
 # キーが入力されるまで終了しない
 cv2.waitKey(0)
