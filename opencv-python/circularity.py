@@ -15,7 +15,7 @@ imgPath = []    # 画像のパス（String）
 images = []     # 生成した画像(Image)
 imgContours = []# 全ての画像の輪郭情報(Contour[])
 imgContour = [] # １枚の画像の輪郭情報(Contour)
-imgCircleLevels = []# 円形度情報(Double)
+imgCircleLevels = [0 for i in range(60)]# 円形度情報(Double)
 
 # 円形度計算
 def calcCircleLevel (contour, area):
@@ -52,7 +52,7 @@ for i in range(60):
         if area >= 2000 and area <= 70000:
             # 円形度を取得して配列に格納する
             level = calcCircleLevel(contour, area)
-            imgCircleLevels.append(level)
+            imgCircleLevels[i] = level
             # 輪郭情報を描画した画像を配列に格納する
             imgContour.append(cv2.drawContours(images[i], contour, -1, (0, 255, 0), 3))
             # 中央にテキスト描く
@@ -61,8 +61,18 @@ for i in range(60):
             print("No:" + str(i+1), OKBLUE + "Area = " + str(area), OKGREEN + "Level = " + str(level))
             break   # １度輪郭を取得したら次の画像を解析する
 
-# TODO: 円形度情報からなんの標識なのかを判別する
+print(imgCircleLevels)
 
+# TODO: 円形度情報からなんの標識なのかを判別する
+for i in range(60):
+    if imgCircleLevels[i] >= 0.8:
+        cv2.putText(images[i],"Straight ahead or left turn permitted",(0,50),fontface,fontscale, color)
+    elif imgCircleLevels[i] >= 0.7:
+        cv2.putText(images[i],"Children crossing",(0,50),fontface,fontscale, color)
+    elif imgCircleLevels[i] >= 0.5:
+        cv2.putText(images[i],"Stop",(0,50),fontface,fontscale, color)
+    else:
+        cv2.putText(images[i],"None",(0,50),fontface,fontscale, color)
 # 画像の表示
 for i in range(60):
     cv2.imshow("image" + str(i+1), images[i])
