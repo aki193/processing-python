@@ -1,7 +1,5 @@
-
 import cv2
 import math
-
 
 #フォントの大きさ
 fontscale = 1.0
@@ -10,14 +8,14 @@ color=(0, 120, 238)
 #フォント
 fontface = cv2.FONT_HERSHEY_COMPLEX
 
-OKBLUE = '\033[94m'
-OKGREEN = '\033[92m'
+OKBLUE = '\033[94m' # ターミナルで青文字を使うための値
+OKGREEN = '\033[92m'# ターミナルで緑文字を使うための値
 
-imgPath = []
-images = []
-imgContours = []
-imgContour = []
-imgCircleLevels = []
+imgPath = []    # 画像のパス（String）
+images = []     # 生成した画像(Image)
+imgContours = []# 全ての画像の輪郭情報(Contour[])
+imgContour = [] # １枚の画像の輪郭情報(Contour)
+imgCircleLevels = []# 円形度情報(Double)
 
 # 円形度計算
 def calcCircleLevel (contour, area):
