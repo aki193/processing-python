@@ -57,6 +57,7 @@ for i in range(60):
             print("No:" + str(i+1), OKBLUE + "Area = " + str(area), OKGREEN + "Level = " + str(level))
             break   # １度輪郭を取得したら次の画像を解析する
 
+# 画像の表示
 for i in range(60):
     cv2.imshow("image" + str(i+1), images[i])
 

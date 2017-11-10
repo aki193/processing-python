@@ -8,16 +8,21 @@ sample = []      # PVector
 cluster = []     # int
 prevCluster = [] # int
 
-center = [] # PVector
+center = [] # PVector(x, y座標)
 key_pressed_sign = False
+
+# 特徴量を取得して円，三角，四角
 
 def setup():
     size (800, 800, P2D)
+    # 適当にプロットする
     for i in range(sampleN):
         sample.append(PVector(random(100, width - 100), random(100, height -100)))
+    # 重心を適当にプロットする
     for i in range(clusterN):
         center.append(PVector(random(10, width-10), random(10, height - 10)))
         
+    # クラスタデータを3つの値をランダムで格納する
     for i in range(sampleN):
         cluster.append(i % clusterN)
         prevCluster.append(-1)
