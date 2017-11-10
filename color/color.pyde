@@ -35,38 +35,30 @@ def getColor():
                 r = red(img.pixels[loc])
                 g = green(img.pixels[loc])
                 b = blue(img.pixels[loc])
-                
 
                 if r != (255) and g != (255) and b != (255):
-                        if r >= 90  and g <= 70 and b <= 80:
-                            redCount += 1
-                            print "Red = "+ str(redCount) + ", Green = " + str(greenCount) + ", Blue = " + str(blueCount)
+#                         if r >= 90  and g <= 70 and b <= 80:
+#                             redCount += 1
+                            #print "Red = "+ str(redCount) + ", Green = " + str(greenCount) + ", Blue = " + str(blueCount)
                         
-                        elif r <= 0 and g <= 60 and b >= 100:
+                        if r <= 20 and g >= 60 and b >= 100:
                             blueCount += 1
                             print "Red ="+ str(redCount) + ", Green = " + str(greenCount) + ", Blue = " + str(blueCount)
                         
                         
-                        elif r >=90  and g >= 70 and b <= 10:
-                            redCount += 1
-                            greenCount += 1
-                            print "Red = "+ str(redCount) + ", Green = " + str(greenCount) + ", Blue = " + str(blueCount)
-                     #if blueCount > greenCount:
-                     #   print "It is Blue...!?!?!?"
-
-# 判断した色を+1する。
-
-        
-                
- 
-#    if redCount > 100:
-#        print "It is Red...!?!?"
-#      elif blueCount > greenCount:
-#        print "It is Blue...!?!?!?" 
-#     elif greenCount > blueCount:
-#        print "It is Yellow...!?!?!?!?!?"
-#     else:
-#        print "It is White...!"
+#                         elif r >=90  and g >= 70 and b <= 10:
+#                             redCount += 1
+#                             greenCount += 1
+                            #print "Red = "+ str(redCount) + ", Green = " + str(greenCount) + ", Blue = " + str(blueCount)
+                                                
+#         if redCount > 100:
+#             print "It is Red...!?!?"
+        if blueCount > greenCount:
+            print "It is Blue...!?!?!?" 
+#         elif greenCount > blueCount:
+#             print "It is Yellow...!?!?!?!?!?"
+#         else:
+#             print "I can't see :_("
 #                     
     updatePixels()
 
