@@ -53,8 +53,9 @@ for i in range(60):
             imgContour.append(cv2.drawContours(images[i], contour, -1, (0, 255, 0), 3))
             # 中央にテキスト描く
             cv2.putText(images[i],str(level),(25,40),fontface,fontscale, color)
-            cv2.imshow("image" + str(i), images[i])
-            # print("No:" + str(i+1), OKBLUE + "Area = " + str(area), OKGREEN + "Level = " + str(level))
+            cv2.imshow("image" + str(i+1), images[i])
+            print("No:" + str(i+1), OKBLUE + "Area = " + str(area), OKGREEN + "Level = " + str(level))
+            break
 
 # for i in range(60):
 #     for contour in imgContours[i]:
