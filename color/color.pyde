@@ -1,4 +1,4 @@
-imges = []
+ImageArry = []
 def setup():
     size(640, 360)
     imgPath = []
@@ -6,26 +6,29 @@ def setup():
     #変数 num : 配列の長さnumberを意味
     #Str : string　配列の変数の意味? → Path:　画像のPath情報を表す変数
     
+    #pic01~09
     for num in range(1, 10):
         imgPath.append("pic0"+ str(num) + ".jpg")
+    #pic10~60
     for num in range(10, 61):
         imgPath.append("pic"+ str(num) + ".jpg")
 
     for num in range(60):
-        imges.append(loadImage(imgPath[num]))
+        ImageArry.append(loadImage(imgPath[num]))
     
     getColor() #色情報の取得
         
 def draw():
     for y in range(6):
         for x in range(10):
-            image(imges[x+y*10], x*64, y*60, 64, 60)
+            image(ImageArry[x+y*10], x*64, y*60, 64, 60)
     
 def getColor():
-    loadPixels () #ピクセル配列にアクセスする前にpixelsを読み込む
+    loadPixels() #ピクセル配列にアクセスする前にpixelsを読み込む
     
     #enumerate: ループする際に配列の添字つきで要素を得る
-    for index, img in enumerate(imges):
+    #
+    for index, img in enumerate(ImageArry):
         
         print "pic" + str(index + 1)
        
