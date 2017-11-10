@@ -1,15 +1,18 @@
 imges = []
 def setup():
     size(640, 360)
-    imgStr = []
-
+    imgPath = []
+    
+    #変数 num : 配列の長さnumberを意味
+    #Str : string　配列の変数の意味? → Path:　画像のPath情報を表す変数
+    
     for num in range(1, 10):
-        imgStr.append("pic0"+ str(num) + ".jpg")
+        imgPath.append("pic0"+ str(num) + ".jpg")
     for num in range(10, 61):
-        imgStr.append("pic"+ str(num) + ".jpg")
+        imgPath.append("pic"+ str(num) + ".jpg")
 
     for num in range(60):
-        imges.append(loadImage(imgStr[num]))
+        imges.append(loadImage(imgPath[num]))
     
     getColor() #色情報の取得
         
@@ -23,7 +26,8 @@ def getColor():
     
     #enumerate: ループする際に配列の添字つきで要素を得る
     for index, img in enumerate(imges):
-        print (index + 1)
+        
+        print "pic" + str(index + 1)
        
         #判断された色に+1するための変数
         redCount = 0
