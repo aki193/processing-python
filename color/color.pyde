@@ -1,7 +1,11 @@
-import codecs       
-#imgColors = [Color.NONE for i in range(60)]
-ImageArray = []
-hueAvg = [0.0 for i in range(60)]
+import codecs
+class Color:
+    RED, BLUE, YELLOW, NONE = range(1, 5)
+        
+imgColors = [Color.NONE for i in range(60)]
+ImageArry = []
+
+samples = ["aa", "bb"]
 def setup():
     size(640, 360)
     imgPath = []
@@ -14,19 +18,22 @@ def setup():
         imgPath.append("pic"+ str(num) + ".jpg")
 
     for num in range(60):
-        ImageArray.append(loadImage(imgPath[num]))
+        ImageArry.append(loadImage(imgPath[num]))
     
     getColor() #色情報の取得
-    exportColorData()
-    
+#     exportColorData()
+
  
                
 def draw():
     for y in range(6):
         for x in range(10):
-            image(ImageArray[x+y*10], x*64, y*60, 64, 60)
+            image(ImageArry[x+y*10], x*64, y*60, 64, 60)
 
 def getColor():
+    
+    #判断された色に+1するための変数
+    hueAvg = [0 for i in range(60)]
     
     loadPixels() #ピクセル配列にアクセスする前にpixelsを読み込む
     #enumerate: ループする際に配列の添字つきで要素を得る
@@ -60,36 +67,13 @@ def getColor():
                     else:
                         hueSum += h 
                         count += 1
-        # 平均値を配列に格納
+                        
         hueAvg[index] = hueSum / count
-        print hueAvg[index]
     
-def exportColorData():    
-    f = codecs.open('a.txt', 'w', 'shift_jis')
+    updatePixels() #読み込んだpixelsの更新    
+    
+    output = createWriter("hueLevel.txt")
     for value in hueAvg:
-        f.write(str(value) + "\n")
-    f.close()
-#     f = codecs.open("circleLevel.txt", "w")
-#     for hue in hueAvg:
-#         f.write(hue)
-#     f.close()
-#         f.write(hueAvg)
-#     updatePixels() #読み込んだpixelsの更新  
-#     
-# 
-#def exportColorData():
-#     f = codecs.open('write.txt', 'w', 'shift_jis')
-#     i = 0
-#     for x in imgColors:
-#         i = i + 1
-#         f.write ("pic" + str(i)+"\n")
-#         if x == 1:
-#             f.write("It is RED\n")
-#         elif x == 2:
-#             f.write("It is BLUE\n")
-#         elif x == 3:
-#             f.write("It is YELLOW\n")
-#         elif x == 4:
-#             f.write("It is NONE\n")
-#     
-#     f.close()
+        output.println(str(value))
+    output.flush()
+    output.close()
