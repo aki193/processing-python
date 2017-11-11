@@ -1,10 +1,11 @@
-# import codecs
-# class Color:
-#     RED, BLUE, YELLOW, NONE = range(1, 5)
-#         
-#imgColors = [Color.NONE for i in range(60)]
+import codecs
+class Color:
+    RED, BLUE, YELLOW, NONE = range(1, 5)
+        
+imgColors = [Color.NONE for i in range(60)]
 ImageArry = []
 
+samples = ["aa", "bb"]
 def setup():
     size(640, 360)
     imgPath = []
@@ -68,11 +69,13 @@ def getColor():
                         count += 1
                         
         hueAvg[index] = hueSum / count
+        
     
-#         f = codecs.open('a.txt', 'w', 'shift_jis')
-#         for value in hueAvg:
-#             print value
-# #             f.write("pic"+ str(index) + "…"+ str(hueAvg[index]) + "\n")
+    output = createWriter("hueLevel.txt")
+    for value in hueAvg:
+        output.println(str(value))
+    output.flush()
+    output.close()
 #         f.close()
         
         
@@ -88,19 +91,20 @@ def getColor():
 #     updatePixels() #読み込んだpixelsの更新  
 #     
 # 
-# def exportColorData():
-#     f = codecs.open('write.txt', 'w', 'shift_jis')
-#     i = 0
-#     for x in imgColors:
-#         i = i + 1
-#         f.write ("pic" + str(i)+"\n")
-#         if x == 1:
-#             f.write("It is RED\n")
-#         elif x == 2:
-#             f.write("It is BLUE\n")
-#         elif x == 3:
-#             f.write("It is YELLOW\n")
-#         elif x == 4:
-#             f.write("It is NONE\n")
-#     
-#     f.close()
+def exportColorData():
+    f = codecs.open('write.txt', 'w', 'shift_jis')
+    print f
+    i = 0
+    for x in imgColors:
+        i = i + 1
+        f.write ("pic" + str(i)+"\n")
+        if x == 1:
+            f.write("It is RED\n")
+        elif x == 2:
+            f.write("It is BLUE\n")
+        elif x == 3:
+            f.write("It is YELLOW\n")
+        elif x == 4:
+            f.write("It is NONE\n")
+    
+    f.close()
