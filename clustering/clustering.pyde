@@ -1,20 +1,29 @@
+import codecs
 lines = [] #String
 line_index = 0
 
-sampleN = 100
+sampleN = 100 
 clusterN = 3
 
 sample = []      # PVector
 cluster = []     # int
 prevCluster = [] # int
 
-center = [] # PVector(x, y座標)
+center = [] # 重心座標 PVector(x, y座標)
 key_pressed_sign = False
 
 # 特徴量を取得して円，三角，四角
+imgColors = [0.0 for i in range(60)]
+imgCircleLevels = [0.0 for i in range(60)]
 
 def setup():
     size (800, 800, P2D)
+    smooth()
+    rectMode(CENTER)
+
+    for index, data in enumerate(open('circleLevel.txt', 'r')):
+        imgCircleLevels[index] = data
+    print imgCircleLevels
     # 適当にプロットする
     for i in range(sampleN):
         sample.append(PVector(random(100, width - 100), random(100, height -100)))
