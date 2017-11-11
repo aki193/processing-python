@@ -1,10 +1,7 @@
-# import codecs
-# class Color:
-#     RED, BLUE, YELLOW, NONE = range(1, 5)
-#         
+import codecs       
 #imgColors = [Color.NONE for i in range(60)]
-ImageArry = []
-
+ImageArray = []
+hueAvg = [0.0 for i in range(60)]
 def setup():
     size(640, 360)
     imgPath = []
@@ -17,21 +14,17 @@ def setup():
         imgPath.append("pic"+ str(num) + ".jpg")
 
     for num in range(60):
-        ImageArry.append(loadImage(imgPath[num]))
+        ImageArray.append(loadImage(imgPath[num]))
     
     getColor() #色情報の取得
-#     exportColorData()
+    exportColorData()
     
  
                
 def draw():
-    for y in range(2):
+    for y in range(6):
         for x in range(10):
-            image(ImageArry[x+y*10], x*64, y*60, 64, 60)
-    
-
-
-         
+            image(ImageArray[x+y*10], x*64, y*60, 64, 60)
 
 def getColor():
     
@@ -40,11 +33,10 @@ def getColor():
     for index, img in enumerate(ImageArry):
         print ("pic" + str(index + 1))
 
-        #判断された色に+1するための変数
-        redCount = 0
-        yellowCount = 0
-        blueCount = 0
-    
+        hueSum = 0.0
+        count = 0
+        
+        
         # 画像の縦・横のpixel値を読み取る
         for y in range(img.height):
             for x in range(img.width):
@@ -55,30 +47,37 @@ def getColor():
                 s = saturation(img.pixels[loc])
                 b = brightness(img.pixels[loc])
                 
-                if h != 0 and s != 0 and b != 0:
-                    print(h) 
-
-#                     
-#         #判断した色を出力
-#         if yellowCount > blueCount: 
-#             print("It is YELLOW")
-#             imgColors[index] = Color.YELLOW
-#         
-#         elif redCount > 10:
-#             print("It is RED")
-#             imgColors[index] = Color.RED      
-#         
-#         elif blueCount > yellowCount:
-#             print("It is BLUE")
-#             imgColors[index] = Color.BLUE
-#         else:
-#             print "Could not parse:_("  
-#             imgColors[index] = Color.NONE
-#         
+                
+                # 止まれの標識のときに、赤色を180~360までにする
+                if h != 0:
+                    if index > 20 and index <= 40:
+                        if 0 < h and h < 127:
+                            hueSum += 360-h
+                        elif h >= 127 and h <= 255:
+                            hueSum += h
+                        count += 1
+                    # 止まれ以外の画像の時
+                    else:
+                        hueSum += h 
+                        count += 1
+        # 平均値を配列に格納
+        hueAvg[index] = hueSum / count
+        print hueAvg[index]
+    
+def exportColorData():    
+    f = codecs.open('a.txt', 'w', 'shift_jis')
+    for value in hueAvg:
+        f.write(str(value) + "\n")
+    f.close()
+#     f = codecs.open("circleLevel.txt", "w")
+#     for hue in hueAvg:
+#         f.write(hue)
+#     f.close()
+#         f.write(hueAvg)
 #     updatePixels() #読み込んだpixelsの更新  
 #     
 # 
-# def exportColorData():
+#def exportColorData():
 #     f = codecs.open('write.txt', 'w', 'shift_jis')
 #     i = 0
 #     for x in imgColors:
