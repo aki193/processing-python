@@ -20,10 +20,11 @@ circleBias = 800
 imgHueLevels = [0 for i in range(60)]
 imgCircleLevels = [0 for i in range(60)]
 
-# 青，赤，黄
-clusterHueLevels = [140.0 * hueBias, 220.0 * hueBias, 60.0 * hueBias]
-# 円形，三角，四角
-clusterCircleLevels = [int(0.8 * circleBias), int(0.7 * circleBias), int(0.5 * circleBias)]
+# サンプルデータから重心を指定して見る
+# 黄，赤，青
+clusterHueLevels = [60.0 * hueBias, 220.0 * hueBias, 140.0 * hueBias]
+# 四角，三角，円
+clusterCircleLevels = [int(0.7 * circleBias), int(0.5 * circleBias), int(0.8 * circleBias)]
 
 # サンプル画像のパスと格納される配列
 imgPath = []
@@ -54,13 +55,20 @@ def setup():
         imgCircleLevels[index] = int(data * circleBias)
 
     # 2つの特徴量のデータをプロットする
+    # x軸=円形度，y軸=色相
     for i in range(sampleN):
         sample.append(PVector(imgCircleLevels[i], imgHueLevels[i]))
+    
+    # サンプルデータで重心をプロットした場合，正確にクラスタリングできる
+    # 重心をランダムにした場合，精度が落ちる
     # サンプルデータより重心をプロットする
-    for i in range(clusterN):
-        center.append(PVector(clusterHueLevels[i], clusterCircleLevels[i]))
-        
+#     for i in range(clusterN):
+#         center.append(PVector(clusterCircleLevels[i], clusterHueLevels[i]))
+    
     # クラスタデータを3つの値をランダムで格納する
+    for i in range(clusterN):
+        center.append(PVector(random(10, width-10), random(10, height - 10)))
+    
     for i in range(sampleN):
         cluster.append(i % clusterN)
         prevCluster.append(-1)
@@ -82,7 +90,7 @@ def draw():
             stroke(255, 255, 0)
         elif cluster[i] == 1:
             stroke(255, 0, 0)
-        elif  cluster[i] == 2:
+        elif cluster[i] == 2:
             stroke(0, 255, 255)
             
         noFill()
