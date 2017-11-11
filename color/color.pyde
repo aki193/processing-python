@@ -1,3 +1,4 @@
+import codecs
 class Color:
     RED, BLUE, YELLOW, NONE = range(1, 5)
     
@@ -16,8 +17,9 @@ def setup():
 
     for num in range(60):
         ImageArry.append(loadImage(imgPath[num]))
+    #getColor() #色情報の取得
+    #exportColorData()
     
-    getColor() #色情報の取得
  
                
 def draw():
@@ -31,13 +33,9 @@ def draw():
 
 def getColor():
     
-
-#         if imgColor is Color.NONE:
-#             print("image is NONE")
-    
     loadPixels() #ピクセル配列にアクセスする前にpixelsを読み込む
     #enumerate: ループする際に配列の添字つきで要素を得る
-    for index, img in enumerate(ImageArry):
+    for index, img in enumerate(ImageArry,):
         print ("pic" + str(index + 1))
     
         
@@ -65,8 +63,7 @@ def getColor():
                         redCount += 1
                     elif r <= 20 and g >= 60 and b >= 100: #Blue Threshold
                         blueCount += 1    
-                    
-        print(yellowCount)
+
                     
         #判断した色を出力
         if yellowCount > blueCount: 
@@ -78,11 +75,28 @@ def getColor():
             imgColors[index] = Color.RED      
         
         elif blueCount > yellowCount:
+            print("It is BLUE")
             imgColors[index] = Color.BLUE
         else:
             print "Could not parse:_("  
+            imgColors[index] = Color.NONE
         
     updatePixels() #読み込んだpixelsの更新  
     
-    
 
+def exportColorData():
+    f = codecs.open('write.txt', 'w', 'shift_jis')
+    i = 0
+    for x in imgColors:
+        i = i + 1
+        f.write ("pic" + str(i)+"\n")
+        if x == 1:
+            f.write("It is RED\n")
+        elif x == 2:
+            f.write("It is BLUE\n")
+        elif x == 3:
+            f.write("It is YELLOW\n")
+        elif x == 4:
+            f.write("It is NONE\n")
+    
+    f.close()
