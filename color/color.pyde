@@ -38,7 +38,7 @@ def getColor():
     loadPixels() #ピクセル配列にアクセスする前にpixelsを読み込む
     #enumerate: ループする際に配列の添字つきで要素を得る
     for index, img in enumerate(ImageArry):
-        print "pic" + str(index + 1)
+        print ("pic" + str(index + 1))
     
         
         #判断された色に+1するための変数
@@ -57,31 +57,30 @@ def getColor():
                 r = red(img.pixels[loc])
                 g = green(img.pixels[loc])
                 b = blue(img.pixels[loc])
-    
                 if r != (255) and g != (255) and b != (255):
                     if r >=90  and g >= 90 and b <= 20:#Yellow Threshold
                         yellowCount += 1
+                        
                     elif r >= 100  and g <= 80 and b <= 80: #Red Threshold
                         redCount += 1
                     elif r <= 20 and g >= 60 and b >= 100: #Blue Threshold
                         blueCount += 1    
                     
-                    
+        print(yellowCount)
                     
         #判断した色を出力
-    for imgColor in imgColors: 
         if yellowCount > blueCount: 
-            imgColors[i] = Color.YELLOW
-    #                 print(imgColors.YELLOW)
-            if imgColors in Color.YELLOW:
-                print("YELLOW")
-    #             elif redCozunt > 10:
-    #                 imgColors[i] = Color.RED
-    #                 
-    #             elif blueCount > yellowCount:
-    #                 imgColors[i] = Color.BLUE
-#         else:
-    #             print "Could not parse:_("  
+            print("It is YELLOW")
+            imgColors[index] = Color.YELLOW
+        
+        elif redCount > 10:
+            print("It is RED")
+            imgColors[index] = Color.RED      
+        
+        elif blueCount > yellowCount:
+            imgColors[index] = Color.BLUE
+        else:
+            print "Could not parse:_("  
         
     updatePixels() #読み込んだpixelsの更新  
     
