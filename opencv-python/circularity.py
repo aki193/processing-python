@@ -75,10 +75,12 @@ for i in range(60):
     # 判別できない
     else:
         cv2.putText(images[i],"None",(0,50),fontface,fontscale, color)
-        
+
 # 画像の表示
 for i in range(60):
     cv2.imshow("image" + str(i+1), images[i])
+
+# TODO: imgCircleLevelsに円形度の値が格納されているので，テキストファイルに書き出してください
 
 # キーが入力されるまで終了しない
 cv2.waitKey(0)
