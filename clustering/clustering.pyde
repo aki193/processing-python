@@ -2,7 +2,7 @@ import codecs
 lines = [] #String
 line_index = 0
 
-sampleN = 100 
+sampleN = 60
 clusterN = 3
 
 sample = []      # PVector
@@ -12,26 +12,63 @@ prevCluster = [] # int
 center = [] # 重心座標 PVector(x, y座標)
 key_pressed_sign = False
 
+# 画面に広く表示されるようにバイアス変数を用意する
+hueBias = 3
+circleBias = 800
+
 # 特徴量を取得して円，三角，四角
-imgColors = [0.0 for i in range(60)]
-imgCircleLevels = [0.0 for i in range(60)]
+imgHueLevels = [0 for i in range(60)]
+imgCircleLevels = [0 for i in range(60)]
+
+# サンプルデータから重心を指定して見る
+# 黄，赤，青
+clusterHueLevels = [60.0 * hueBias, 220.0 * hueBias, 140.0 * hueBias]
+# 四角，三角，円
+clusterCircleLevels = [int(0.7 * circleBias), int(0.5 * circleBias), int(0.8 * circleBias)]
+
+# サンプル画像のパスと格納される配列
+imgPath = []
+imageArray = []
 
 def setup():
     size (800, 800, P2D)
-    smooth()
-    rectMode(CENTER)
+    smooth()    
+    
+    #Path:画像のPath情報を取得
+    for num in range(1, 10):  #pic01~09
+        imgPath.append("pic0"+ str(num) + ".jpg")
+    for num in range(10, 61):    #pic10~60
+        imgPath.append("pic"+ str(num) + ".jpg")
+    
+    #画像読み込み
+    for num in range(60):
+        imageArray.append(loadImage(imgPath[num]))
 
-    for index, data in enumerate(open('circleLevel.txt', 'r')):
-        imgCircleLevels[index] = data
-    print imgCircleLevels
-    # 適当にプロットする
+    # 色相データの読み込み（画面に広くプロットされるようにバイアスをかける）
+    for index, dataStr in enumerate(open('hueLevel.txt', 'r')):
+        data = float(dataStr)
+        imgHueLevels[index] = int(data * hueBias)
+        
+    # 円形度データの読み込み（画面に広くプロットされるようにバイアスをかける）    
+    for index, dataStr in enumerate(open('circleLevel.txt', 'r')):
+        data = float(dataStr)
+        imgCircleLevels[index] = int(data * circleBias)
+
+    # 2つの特徴量のデータをプロットする
+    # x軸=円形度，y軸=色相
     for i in range(sampleN):
-        sample.append(PVector(random(100, width - 100), random(100, height -100)))
-    # 重心を適当にプロットする
+        sample.append(PVector(imgCircleLevels[i], imgHueLevels[i]))
+    
+    # サンプルデータで重心をプロットした場合，正確にクラスタリングできる
+    # 重心をランダムにした場合，精度が落ちる
+    # サンプルデータより重心をプロットする
+#     for i in range(clusterN):
+#         center.append(PVector(clusterCircleLevels[i], clusterHueLevels[i]))
+    
+    # クラスタデータを3つの値をランダムで格納する
     for i in range(clusterN):
         center.append(PVector(random(10, width-10), random(10, height - 10)))
-        
-    # クラスタデータを3つの値をランダムで格納する
+    
     for i in range(sampleN):
         cluster.append(i % clusterN)
         prevCluster.append(-1)
@@ -46,11 +83,13 @@ def draw():
         key_pressed_sign = False
     
     for i in range(sampleN):
+        
+        image(imageArray[i], sample[i].x, sample[i].y, 30, 30)
         pushMatrix()
         if cluster[i] == 0:
-            stroke(255, 0, 0)
-        elif cluster[i] == 1:
             stroke(255, 255, 0)
+        elif cluster[i] == 1:
+            stroke(255, 0, 0)
         elif cluster[i] == 2:
             stroke(0, 255, 255)
             
@@ -62,9 +101,9 @@ def draw():
         pushMatrix()
         
         if i == 0:
-            fill(255, 0, 0)
-        elif i == 1:
             fill(255, 255, 0)
+        elif i == 1:
+            fill(255, 0, 0)
         elif i == 2:
             fill(0, 255, 255)
             
