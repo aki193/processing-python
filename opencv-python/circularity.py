@@ -49,7 +49,7 @@ for i in range(60):
     # 輪郭の面積を算出
         area = cv2.contourArea(contour)
      # 輪郭があったら円形度を算出する（面積がある場合に処理をする．輪郭があっても面積が０の時があるため．）
-        if area >= 2000 and area <= 70000:
+        if area >= 1500 and area <= 70000:
             # 円形度を取得して配列に格納する
             level = calcCircleLevel(contour, area)
             imgCircleLevels[i] = level
@@ -81,6 +81,10 @@ for i in range(60):
     cv2.imshow("image" + str(i+1), images[i])
 
 # TODO: imgCircleLevelsに円形度の値が格納されているので，テキストファイルに書き出してください
+f = open('circleLevel.txt', 'w')
+for level in imgCircleLevels:
+    f.write(str(level) + '\n')
+f.close()
 
 # キーが入力されるまで終了しない
 cv2.waitKey(0)
