@@ -1,3 +1,4 @@
+import codecs
 lines = [] #String
 line_index = 0
 
@@ -12,20 +13,29 @@ center = [] # 重心座標 PVector(x, y座標)
 key_pressed_sign = False
 
 # 特徴量を取得して円，三角，四角
-imgColors = []
-imgContours = []
+imgColors = [0.0 for i in range(60)]
+imgCircleLevels = [0.0 for i in range(60)]
+
+# 青，赤，黄
+clusterColors = [240.0, 210.0, 200.0]
+# 円形，三角，四角
+clusterCircleLevels = [0.8, 0.7, 0.5]
+
 
 def setup():
     size (800, 800, P2D)
     smooth()
-    rectMode(CENTER)    
-    
+    rectMode(CENTER)
+
+    for index, data in enumerate(open('circleLevel.txt', 'r')):
+        imgCircleLevels[index] = data
+        
     # 適当にプロットする
     for i in range(sampleN):
-        sample.append(PVector(random(100, width - 100), random(100, height -100)))
+        sample.append(imgCircleLevels[i], imgColors))
     # 重心を適当にプロットする
     for i in range(clusterN):
-        center.append(PVector(random(10, width-10), random(10, height - 10)))
+        center.append(, )
         
     # クラスタデータを3つの値をランダムで格納する
     for i in range(sampleN):
