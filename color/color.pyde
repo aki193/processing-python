@@ -69,42 +69,11 @@ def getColor():
                         count += 1
                         
         hueAvg[index] = hueSum / count
-        
+    
+    updatePixels() #読み込んだpixelsの更新    
     
     output = createWriter("hueLevel.txt")
     for value in hueAvg:
         output.println(str(value))
     output.flush()
     output.close()
-#         f.close()
-        
-        
-#     f = codecs.open('a.txt', 'w', 'shift_jis')
-#     for value in hueAvg:
-#         f.write("pic"+ str(index) + "…"+ str(hueAvg[index]) + "\n")
-#     f.close()
-#     f = codecs.open("circleLevel.txt", "w")
-#     for hue in hueAvg:
-#         f.write(hue)
-#     f.close()
-#         f.write(hueAvg)
-#     updatePixels() #読み込んだpixelsの更新  
-#     
-# 
-def exportColorData():
-    f = codecs.open('write.txt', 'w', 'shift_jis')
-    print f
-    i = 0
-    for x in imgColors:
-        i = i + 1
-        f.write ("pic" + str(i)+"\n")
-        if x == 1:
-            f.write("It is RED\n")
-        elif x == 2:
-            f.write("It is BLUE\n")
-        elif x == 3:
-            f.write("It is YELLOW\n")
-        elif x == 4:
-            f.write("It is NONE\n")
-    
-    f.close()
