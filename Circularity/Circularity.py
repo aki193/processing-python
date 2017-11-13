@@ -58,7 +58,7 @@ for i in range(60):
             # 中央にテキスト描く
             cv2.putText(images[i],str(level),(0,25),fontface,fontscale, color)
             # Logを出力
-            print("No:" + str(i+1), OKBLUE + "Area = " + str(area), OKGREEN + "Level = " + str(level))
+            print(OKGREEN + "No:" + str(i+1), OKBLUE + "Area = " + str(area), OKGREEN + "Level = " + str(level))
             break   # １度輪郭を取得したら次の画像を解析する
 
 # 円形度情報からなんの標識なのかを判別する

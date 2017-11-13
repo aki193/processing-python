@@ -1,11 +1,7 @@
 import codecs
-class Color:
-    RED, BLUE, YELLOW, NONE = range(1, 5)
-        
-imgColors = [Color.NONE for i in range(60)]
+
 ImageArry = []
 
-samples = ["aa", "bb"]
 def setup():
     size(640, 360)
     imgPath = []
@@ -21,7 +17,6 @@ def setup():
         ImageArry.append(loadImage(imgPath[num]))
     
     getColor() #色情報の取得
-#     exportColorData()
 
  
                
