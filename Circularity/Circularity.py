@@ -38,6 +38,8 @@ for i in range(60):
 for i in range(60):
     imgGray = cv2.cvtColor(images[i],cv2.COLOR_BGR2GRAY)
     ret,imgThresh = cv2.threshold(imgGray,220,255,cv2.THRESH_BINARY)
+    # 2値画像の保存
+    cv2.imwrite("gray_scale" + str(i+1) + ".png", imgThresh)
 
 # ２値化した画像から輪郭を取得
     imgTmp, contours, hierarchy = cv2.findContours(imgThresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_NONE)
@@ -80,7 +82,6 @@ for i in range(60):
 for i in range(60):
     cv2.imshow("image" + str(i+1), images[i])
 
-# TODO: imgCircleLevelsに円形度の値が格納されているので，テキストファイルに書き出してください
 f = open('circleLevel.txt', 'w')
 for level in imgCircleLevels:
     f.write(str(level) + '\n')
