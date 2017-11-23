@@ -1,9 +1,11 @@
 import codecs        
 imageArray = [] #lower camel case
+imageThresh = []
 
 def setup():
     size(640, 360)
     imgPath = []
+    imgPathThresh = []
     
     #変数 num : 配列の長さnumberを意味
     #Path:画像のPath情報を表す変数
@@ -12,8 +14,15 @@ def setup():
     for num in range(10, 61): #pic10~60
         imgPath.append("pic"+ str(num) + ".jpg")
 
+    for img in imgPath:
+        imageArray.append(loadImage(img))
+        
+    # 2値画像の読み込み
     for num in range(60):
-        imageArray.append(loadImage(imgPath[num]))
+        imgPathThresh.append("gray_scale" + str(num + 1) + ".png")
+        
+    for img in imgPathThresh:
+        imageThresh.append(loadImage(img))
     
     getColor() #色情報の取得
      
@@ -24,7 +33,10 @@ def draw():
     for y in range(6):
         for x in range(10):
             image(imageArray[x+y*10], x*64, y*60, 64, 60)
-
+    
+#     for y in range(6):
+#         for x in range(10):
+#             image(imageThresh[x+y*10], x*64, y*60, 64, 60)
 
 def getColor():
     
