@@ -1,11 +1,13 @@
 import codecs        
 imageArray = [] #lower camel case
 imageThresh = []
+imageContour = []
 
 def setup():
     size(640, 360)
     imgPath = []
     imgPathThresh = []
+    imgPathContour = []
     
     #変数 num : 配列の長さnumberを意味
     #Path:画像のPath情報を表す変数
@@ -23,6 +25,13 @@ def setup():
         
     for img in imgPathThresh:
         imageThresh.append(loadImage(img))
+        
+    # 輪郭画像の読み込み
+    for num in range(60):
+        imgPathContour.append("contour" + str(num + 1) + ".png")
+        
+    for img in imgPathContour:
+        imageContour.append(loadImage(img))
     
     getColor() #色情報の取得
      
@@ -34,9 +43,15 @@ def draw():
         for x in range(10):
             image(imageArray[x+y*10], x*64, y*60, 64, 60)
     
+    # 2値画像の表示
 #     for y in range(6):
 #         for x in range(10):
 #             image(imageThresh[x+y*10], x*64, y*60, 64, 60)
+            
+    # 輪郭画像の表示
+#     for y in range(6):
+#         for x in range(10):
+#             image(imageContour[x+y*10], x*64, y*60, 64, 60)
 
 def getColor():
     

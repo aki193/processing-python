@@ -39,7 +39,7 @@ for i in range(60):
     imgGray = cv2.cvtColor(images[i],cv2.COLOR_BGR2GRAY)
     ret,imgThresh = cv2.threshold(imgGray,220,255,cv2.THRESH_BINARY)
     # 2値画像の保存
-    cv2.imwrite("gray_scale" + str(i+1) + ".png", imgThresh)
+    cv2.imwrite("data/gray_scale" + str(i+1) + ".png", imgThresh)
 
 # ２値化した画像から輪郭を取得
     imgTmp, contours, hierarchy = cv2.findContours(imgThresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_NONE)
@@ -80,6 +80,7 @@ for i in range(60):
 
 # 画像の表示
 for i in range(60):
+    cv2.imwrite("data/contour" + str(i+1) + ".png", images[i])
     cv2.imshow("image" + str(i+1), images[i])
 
 f = open('circleLevel.txt', 'w')
