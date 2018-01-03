@@ -19,12 +19,16 @@ def train(wvec,xvec,label):
     else:
         return wvec
 
+def readFile(path):
+    dataArray = []
+    f = open(path)
+    for dataStr in f:
+        data = float(dataStr)
+        dataArray.append(data)
+    f.close()
+    return dataArray
+
 if __name__=='__main__':
 
-    imgHueLevels = []
-    f = open('hueLevel.txt')
-    for dataStr in f:
-        hue = float(dataStr)
-        imgHueLevels.append(hue)
-    f.close()
+    imgHueLevels = readFile('hueLevel.txt')
     print imgHueLevels
