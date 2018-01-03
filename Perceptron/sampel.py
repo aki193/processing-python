@@ -29,8 +29,13 @@ def readFile(path):
     return dataArray
 
 if __name__=='__main__':
+    sample_num = 20
 
     x1_1 = readFile('urchinHues.txt')
+    x1_2 = readFile('urchinHues.txt')
     x2_1 = readFile('brushHues.txt')
-    # imgEdgeLevels = readFile('hueLevel.txt')
-    print x1_1, x2_1
+    x2_2 = readFile('brushHues.txt')
+    c = np.ones(sample_num)
+
+    x1 = np.c_[x1_1, x1_2, c]
+    x2 = np.c_[x2_1, x2_2, c]
