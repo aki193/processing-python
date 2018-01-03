@@ -30,5 +30,7 @@ def readFile(path):
 
 if __name__=='__main__':
 
-    imgHueLevels = readFile('hueLevel.txt')
-    print imgHueLevels
+    x1_1 = readFile('urchinHues.txt')
+    x2_1 = readFile('brushHues.txt')
+    # imgEdgeLevels = readFile('hueLevel.txt')
+    print x1_1, x2_1
