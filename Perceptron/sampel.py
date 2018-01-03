@@ -31,11 +31,21 @@ def readFile(path):
 if __name__=='__main__':
     sample_num = 20
 
+    # ファイルから特徴量を読み込む
     x1_1 = readFile('urchinHues.txt')
     x1_2 = readFile('urchinHues.txt')
     x2_1 = readFile('brushHues.txt')
     x2_2 = readFile('brushHues.txt')
+    # 第３項の値は1とする
     c = np.ones(sample_num)
 
+    # 色相とエッジと３項目のデータを連結する
     x1 = np.c_[x1_1, x1_2, c]
     x2 = np.c_[x2_1, x2_2, c]
+
+    # クラス分け（1: ウニ, 2: タワシ）
+    label1 = np.ones(sample_num)
+    label2 = -1 * np.ones(sample_num)
+    label_x = np.array(np.r_[label1, label2])
+
+    print label_x
