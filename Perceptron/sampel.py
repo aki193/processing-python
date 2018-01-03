@@ -30,6 +30,7 @@ def readFile(path):
 
 if __name__=='__main__':
     sample_num = 20
+    init_wvec = [1, 1, -1]
 
     # ファイルから特徴量を読み込む
     x1_1 = readFile('urchinHues.txt')
@@ -51,4 +52,9 @@ if __name__=='__main__':
     label2 = -1 * np.ones(sample_num)
     label_x = np.array(np.r_[label1, label2])
 
-    print class_x
+    # 重みのarrayを作成
+    wvec = np.empty((0,3), float)
+    wvec = np.append(wvec, np.array([init_wvec]), axis = 0)
+    wvec = np.append(wvec, np.array([init_wvec]), axis = 0)
+
+    print wvec

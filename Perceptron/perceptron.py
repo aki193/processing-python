@@ -38,9 +38,8 @@ if __name__=='__main__':
     label2=-1*np.ones(int(item_num/2))
     label_x=np.array(np.r_[label1,label2])
 
-    print class_x
-
-    # wvec=np.vstack((init_wvec,init_wvec))
+    wvec=np.vstack((init_wvec,init_wvec,[0,0,0]))
+    print wvec
     #
     # for j in range(loop):
     #     for i in range(item_num):
