@@ -40,15 +40,20 @@ if __name__=='__main__':
 
     wvec=np.vstack((init_wvec,init_wvec))
 
-    isUpdate = False
+    isUpdate = True
 
-    # for j in range(loop):
-    for j in range(1):
+    # for j in range(5):
+    # 重みベクトルが更新されている場合はループする
+    while isUpdate:
+        # 更新がない状態にする
+        isUpdate = False
         for i in range(item_num):
             wvec_new=train(wvec[-1],class_x[i,:],label_x[i])
+            # 重みベクトルの更新確認
             if not np.allclose(wvec[-1], wvec_new):
-                print wvec[-1], wvec_new
+                isUpdate = True
             wvec=np.vstack((wvec,wvec_new))
+        print isUpdate
     w=wvec[-1]
     print w
 
