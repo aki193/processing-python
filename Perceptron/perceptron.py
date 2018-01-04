@@ -40,15 +40,21 @@ if __name__=='__main__':
 
     wvec=np.vstack((init_wvec,init_wvec))
 
-    for j in range(loop):
+    isUpdate = False
+
+    # for j in range(loop):
+    for j in range(1):
         for i in range(item_num):
             wvec_new=train(wvec[-1],class_x[i,:],label_x[i])
+            if not np.allclose(wvec[-1], wvec_new):
+                print wvec[-1], wvec_new
             wvec=np.vstack((wvec,wvec_new))
     w=wvec[-1]
     print w
 
     x_fig=range(-15,16)
     y_fig=[-(w[1]/w[0])*xi-(w[2]/w[1]) for xi in x_fig]
+    print y_fig
 
     plt.scatter(x1[:,0],x1[:,1],marker='o',color='g',s=100)
     plt.scatter(x2[:,0],x2[:,1],marker='s',color='b',s=100)
