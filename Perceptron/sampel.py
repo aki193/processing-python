@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 
 """
-:param type arg1: description
-:param type arg2: description
+:param wvec: 重みベクトル
+:param xvwc: 特徴量ベクトル
 y=w'xを計算している
 正ならlabelを1と判定する（ウニ）
 負ならlabelを2と判定する（タワシ）
@@ -20,9 +20,9 @@ def predict(wvec, xvec):
     return [res, out]
 
 """
-:param type arg1: description
-:param type arg2: description
-:param type arg3: description
+:param wvec: 重みベクトル
+:param xvec: 特徴量ベクトル
+:param label: ウニかタワシか（1or-1）
 計算結果とラベル判定が負の時（誤認識した時）に重みを修正する
 正常な認識の場合は重みをそのまま返す
 """
@@ -34,6 +34,9 @@ def train(wvec, xvec, label):
     else:
         return wvec
 
+"""
+:param path: 読み込むファイルパス
+"""
 def readFile(path):
     dataArray = []
     f = open(path)
@@ -45,7 +48,7 @@ def readFile(path):
 
 if __name__=='__main__':
     sample_num = 40
-    init_wvec = [-0.5, 0.1, 1]
+    init_wvec = [-0.5, 0.1, 1] # 適当な重みベクトル
     isUpdate = True     # 収束判定
 
     # ファイルから特徴量を読み込む
@@ -53,10 +56,6 @@ if __name__=='__main__':
     x1_2 = readFile('urchinEdges.txt')
     x2_1 = readFile('brushHues.txt')
     x2_2 = readFile('brushEdges.txt')
-    # x1_1=np.ones(int(sample_num/2))+10*np.random.random(int(sample_num/2))
-    # x1_2=np.ones(int(sample_num/2))+10*np.random.random(int(sample_num/2))
-    # x2_1=-np.ones(int(sample_num/2))-10*np.random.random(int(sample_num/2))
-    # x2_2=-np.ones(int(sample_num/2))-10*np.random.random(int(sample_num/2))
 
     # 第３項の値は1とする
     c = np.array(np.ones(sample_num/2))
