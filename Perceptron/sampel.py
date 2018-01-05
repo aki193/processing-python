@@ -4,6 +4,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 
+fig = plt.figure()
+
 """
 :param wvec: 重みベクトル
 :param xvwc: 特徴量ベクトル
@@ -45,6 +47,16 @@ def readFile(path):
         dataArray.append(data)
     f.close()
     return dataArray
+
+def plot(frame, w):
+    plt.cla()
+    # for w in wvec:
+    x_fig=range(20, 280)
+    y_fig=[-(w[1]/w[0])*xi-(w[2]/w[1]) for xi in x_fig]
+
+    plt.scatter(x1[:,0],x1[:,1],marker='s',color='g',s=1)
+    plt.scatter(x2[:,0],x2[:,1],marker='o',color='b',s=1)
+    im = plt.plot(x_fig,y_fig)
 
 if __name__=='__main__':
     sample_num = 40
@@ -91,17 +103,6 @@ if __name__=='__main__':
             wvec = np.append(wvec, np.array([wvec_new]), axis = 0)
 
     # アニメーション
-    fig = plt.figure()
-    ims = []
-
-    for w in wvec:
-        x_fig=range(20, 280)
-        y_fig=[-(w[1]/w[0])*xi-(w[2]/w[1]) for xi in x_fig]
-
-        plt.scatter(x1[:,0],x1[:,1],marker='s',color='g',s=1)
-        plt.scatter(x2[:,0],x2[:,1],marker='o',color='b',s=1)
-        im = plt.plot(x_fig,y_fig)
-        ims.append(im)
-
-    ani = animation.ArtistAnimation(fig, ims, interval=100)
+    # ani = animation.ArtistAnimation(fig, ims, interval=100)
+    ani = animation.FuncAnimation(fig, plot, fargs=wvec[-1], interval=100, frames=100)
     plt.show()
