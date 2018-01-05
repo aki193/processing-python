@@ -103,5 +103,5 @@ if __name__=='__main__':
         im = plt.plot(x_fig,y_fig)
         ims.append(im)
 
-    ani = animation.ArtistAnimation(fig, ims, interval=100)
+    ani = animation.ArtistAnimation(fig, ims, interval=100, repeat=False)
     plt.show()
