@@ -104,4 +104,5 @@ if __name__=='__main__':
         ims.append(im)
 
     ani = animation.ArtistAnimation(fig, ims, interval=100, repeat=False)
-    plt.show()
+    plt.show()    # 実行画面に表示
+    #ani.save("output.gif", writer="imagemagick")    # gifとして保存
