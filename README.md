@@ -20,5 +20,11 @@
 `Processing2.x`で実行できます 
 [Clustering.pyde](https://github.com/y-zumi/processing-python/tree/master/Clustering)
 #### クラスタリング実行結果
-<img width="884" alt="2017-11-13 22 17 27" src="https://user-images.githubusercontent.com/20827588/32727638-8956c7f4-c8c0-11e7-9e0b-49b3ab89a2e0.png">
-<img width="912" alt="2017-11-13 22 17 44" src="https://user-images.githubusercontent.com/20827588/32727644-8e7b3828-c8c0-11e7-8c60-33cf4634f144.png">
+|初期状態|最終状態|
+|:--:|:--:|
+|<img width="884" alt="2017-11-13 22 17 27" src="https://user-images.githubusercontent.com/20827588/32727638-8956c7f4-c8c0-11e7-9e0b-49b3ab89a2e0.png">|<img width="912" alt="2017-11-13 22 17 44" src="https://user-images.githubusercontent.com/20827588/32727644-8e7b3828-c8c0-11e7-8c60-33cf4634f144.png">|
+
+### パーセプトロンを行う
+- 青いプロットがタワシの特徴量を基につけたもの
+- 緑プロットがウニの特徴量を基につけたもの  
+![output](https://user-images.githubusercontent.com/20827588/34651154-c57ae696-f40f-11e7-9874-c9e1ad59c0ca.gif)
