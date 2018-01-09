@@ -21,18 +21,17 @@ for i in range(40):
 
 for i in range(40):
     imgCanny.append(cv2.Canny(images[i],600,650))
-
+    
+f = open('cornersLevel.txt', 'w')
 for i in range(40):
     corners = cv2.goodFeaturesToTrack(imgCanny[i], 100, 0.01, 15)
 
     cornersPoint = 0
     for j in corners:
         cornersPoint += 1
-
+   
     print("pic"+str(i+1),cornersPoint)
+    f.write(str(cornersPoint) + '\n')
 
-
-for i in range(40):
-    cv2.imshow("image" + str(i+1), imgCanny[i])
-
+f.close()
 cv2.waitKey(0)
