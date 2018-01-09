@@ -15,7 +15,7 @@ for i in range(1, 10):
 for i in range(10, 41):
     imgPath.append("data/pic"+str(i)+".jpg")
 
-# 画像の読み込む
+# 画像の読み込み
 for i in range(40):
     images.append(cv2.imread(imgPath[i],0))
 
@@ -32,6 +32,9 @@ for i in range(40):
    
     print("pic"+str(i+1),cornersPoint)
     f.write(str(cornersPoint) + '\n')
-
 f.close()
+
+for i in range(40):
+	cv2.imshow("imgCanny" + str(i + 1), imgCanny[i])
+    
 cv2.waitKey(0)
